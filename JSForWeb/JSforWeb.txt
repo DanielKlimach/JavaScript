@@ -1,0 +1,339 @@
+							AULA 1
+
+- No documento HTML eu preciso colocar entre as tags <script>...</script> para colocar um comando de JS
+
+- !alert("..."); Exibe uma caixa de mensagem na frente da tela, como uma pop-up
+
+- console.log("..."); Exibe uma mensagem no console da web (F12)
+
+- document Torna possível manipular uma página da web (HTML)
+
+- document.queryselector("..."); Permite buscar códigos do document
+
+- no console da web ele já tem todo o documento processado, já no programa em si é linha por linha,
+ ele só tem processado os códigos que estão acima do código que vc quiser colocar.
+
+- por isso é uma boa prática colocar a tag <script>...</script> no final do código (perto do </body>)
+
+- eu posso criar variáveis contendo comandos scrpits, ex: let titulo = document.queryselector("h1");
+eu posso trabalha com essa variável agora
+
+- .textcontent posso pegar o conteúdo string(texto) de um codigo, ex: console.log(titulo.textcontent); ou
+titulo.textcontent = "banana"; (modifiquei o h1 da web)
+
+- Uma boa prática é utilizar o .quaryselector em uma classe e não diretamente com a tag (ex:<h1>)
+
+- a melhor prática é ter seus js em uma pasta separada e vinculada com:
+ <script src="C:\Users\Documentos.../class_1.js"></script>
+----------------------------------------------------------------------------------------------------------------------------
+							AULA 2
+
+- Se a classe já estiver sendo ocupada por várias tags, e vc n quer editar todas, adicione um id ex: <tr id="paciente1">
+
+- Eu posso utilizar o queryselector de uma variável, não só do document. ex:
+let paciente = document.querySelector("#paciente1"); Peguei o queryselector do document (código inteiro) para criar uma var paciente que é só de um id específico do documento
+let infopeso = paciente.querySelector(".info-peso"); Utilizei o queryselector na var paciente (id paciente1) e especifiquei mais ainda para alterar a classe info-peso apenas do id paciente1
+
+-Eu posso fazer o mesmo com textcontent
+
+-não tem como mudar um texto para outro texto, você tem que mudar uma tag para outro texto, ex:
+let infoPeso = paciente1.querySelector(".info-peso");
+infoPeso.textContent = "Peso Inválido"; CORRETO!
+
+let infoPeso = paciente1.querySelector(".info-peso");
+let peso = infoPeso.textContent;
+peso.textContent = "Peso Inválido"; ERRADO!
+
+-É possível trabalhar com tudo o que já sabe no javascript para web como se fosse apenas javascript de programação. Analise o código!
+ 
+----------------------------------------------------------------------------------------------------------------------------
+							AULA 3
+
+-querySelector sempre nos renornará um único elemento, se tiver vários elementos com a mesma classe ou id ou tag ele irá retornar apenas o primeiro.
+Para isso temos a querySelectorAll; ela sim seleciona todos os elementos que corresponderem a busca a cria uma lista
+
+-No JS a tag for geralmente é feita com i, ex: for(let i = 0;i < 5; i++){};
+
+-Você sempre poderá separar itens de uma lista com o couchete e o número do respectivo item, ex: pacientes[2]; (lembre-se que muitas coisas são consideradas listas)
+
+-.tofixed(); serve para limitar o número de casas decimais que vc quer
+Porém ela só serve quando o elemento em que usar é declarado como número, por isso é bom utilizar a propriedade:
+
+-Number() dentro dos parenteses você coloca os atributos que vc quiser, variáveis, objetos, etc.
+
+-Posso usar css também, mas tem que ser no estilo camelcase, n separe com -
+
+-É uma boa prática alterarmos apenas por meio de classe que fique vinculado a uma pasta css
+
+-.classList nos retorna todas as classes daquele objeto
+
+-.classList.add() serve para colocarmos uma classe em um objeto
+
+- Criei uma css para a class 3, dê uma olhada no ultimo código
+
+----------------------------------------------------------------------------------------------------------------------------
+							AULA 4
+
+-Tudo que vc faz na página é um evento(ex:clicar,scrollar,etc) e o JS tem mecanismos que escultam essas interações com a página, ex:
+titulo.addEventListener() adiciona um escutador de evento(interação) [titulo foi uma variável de exemplo]
+então vc escolhe o evento que quer identificar, ex o clique: titulo.addEventListener("click")
+
+-Para adicionar uma função no JS vc precisa colocar a tag: fuction, depois nomear sua função como desejar, ex: mostraMensagem, depois adicionar (), que são
+os parâmetros da função e depois adicionar {} que são as ações que acontecerá na função. Ex:
+fuction mostraMensagem(){
+...
+};
+
+-você combina os dois para fazer uma interação js, e no addEventListener, além de adicionar a o escutador "click", você adiciona a ação(função) que ele irá tomar ex:
+let titulo = document.querySelector(".titulo");
+titulo.addEventListener("click",mostraMensagem);
+function mostraMensagem(){
+    console.log("Eu fui clicado!");
+};
+
+Você tem que combinar esses dois para fazer uma interação JS
+
+-Eu também posso fazer essa interação diretamente com o Listener, com a função anônima, onde eu declaro a função dentro do próprio listener (eu n preciso declarar nome,
+ex:
+titulo.addEventListener("click",function(){
+    console.log("eu fui clicado de outra forma!");
+});
+
+-Na outra forma a função (chamada de função nomeada) se declarada com se fosse uma variável,
+recebe até nome, e fica lá para ser utilizada quantas vezes desejar, de várias formas,
+já na função anonima ele só existe quando eu executo determinada ação vinculada ao EventListener,
+então pro resto do código é como se ela n existisse, ela n fica armazenada na RAM
+
+-O comportamento padrão das forms do html é recarregar a página, limpar o formulário e enviar os dados
+event.preventDefault(); previne o comportamento padrão
+
+-Nos formulários eu posso fazer o seguinte no JS: form = document.querySelector("#form1), ai eu coloco a variável relacionada ao formulário 1, form, 
+depois .nome do item no formulário ele vai salvar o item do formulário, e se eu adicionar o .value ele salvará o 
+valor que foi digitado naquele item que contem aqule nome no formulário, ex: form.altura.value;
+
+-O ponto (.) serve para ir especificando dentro de um objeto, ex: 1° var1 = var2, 2° var1 = var2.detalhe1, depois se quiser:, 3° var1 = var2.detalhe1.maisDetalhe
+e também posso colocar especificações tipo o valor que será digitado naquela especificação(detalhe), ex: var1 = var2.detalhe1.maisDetalhe.value;
+
+-document.createElement("tag"); cria uma nova tag na página, ex: document.createElement("tr");
+
+-.appendChild coloque como filho, ex tornar uma td filho de uma tr
+
+----------------------------------------------------------------------------------------------------------------------------
+ 
+							AULA 5
+
+-É importante fragmntar seus códigos js, em que cada parte existe apenas para um processo, ex: calcula-imc e form
+
+-funções na verdade existem para guardar um pedaço do código (um processo) para reutilizar quando quiser,
+ apenas chamando a função, ex:
+function calculaImc(a,b){
+    let imc = 0;
+    imc = a/(b*b);
+    return imc.toFixed(2);
+};
+
+let infoImc = paciente.querySelector(".info-imc");
+let infoPeso = quarySelector(".info-peso");
+let peso = infoPeso.textContent;
+let infoAltura = quarySelector(".info-altura);
+let altura = infoAltura.textContent
+    infoImc.textContent = calculaImc(peso,altura);
+
+-Não importa se a função está antes ou depois do código que está a chamando, as funções também podem ser chamadas entre
+js separados. VocÇe só tem que usar as variáveis dentro dos parenteses que existem no cógido, ex:
+imcTd.textContent = calculaImc(pesoValue,alturaValue);
+Deixou de ser peso,altura e passou a utilizar as variáveis pesoValue e alturaValue para ter como mesmo papel do peso e altura
+
+ -Boa prática colocar as functions no final do código
+
+-OBJETOS: são um conjunto de variáveis que representam um objeto(algo), ex: temos as variáveis:
+nome,peso,altura e gordura. Essas variáveis todas representam um paciente, representam uma pessoa para cada td
+logo tudo isso poderia virar um objeto guardado em uma variável chamada paciente
+
+-CRIANDO OBJETOS: eu crio uma variável e coloco o resultado dela entre couchetes, e cada atributo do meu objeto eu declaro,
+coloco dois pontos e coloco o valor do atributo, como se fosse uma variável. Se tiver mais de um atributo eu coloco vírgula.
+se eu fizer dentro de uma função fica assim:
+
+function obtemPacienteForm(form){
+    let paciente = {
+        nome:form.nome.value, 
+        peso:form.peso.value,
+        altura:form.altura.value,
+        gordura:form.gordura.value
+    };
+    return paciente;
+};
+
+então se eu quiser colocar essa função de objeto em prática eu crio uma variável, ex:
+
+let paciente = obtemPacienteForm(form);
+Eu criei uma variável paciente para representar meu objeto paciente puxando a função obtemPacienteForm vinculada
+a variável form.
+
+agora eu tenho que puxar a variável que criei (paciente) e especificar a um atributo da função e não diretamente, ex:
+nomeTd.textContent = nomeValue; Errado! Porque nomeValue é um atributo da variável paciente e eu estou a tratando como se 
+fosse uma variável.
+nomeTd.textContent = paciente.nomeValue; Correto!
+
+-Não confunda os atributos com variáveis!
+
+-Propriedades   Valores
+   nome:        form.nome.value,
+   idade:       16,
+   Sobrenome:    "Klimach"
+
+-Por mais que eu adicione tudo, não ficará igual ao html caso não tenha classes e id, então se quiser deixar o código impecável
+tem que prestar atenção nisso. 
+
+.reset serve para limpar os campos do form
+
+----------------------------------------------------------------------------------------------------------------------------
+
+							AULA 6
+
+-Se você colocar uma exclamação antes de uma variável ela ficará negativa (ao contrário_ ex:
+pesoEhValido = true;
+if(!pesoEhValido{
+console.log("peso inválido")
+} // se o pesoEhValido for igual a False, irá mostrar "peso inválido".
+
+-se vc quiser sair de uma função (interromper) antes que ela processe o resto do código, é só vc colocar um if e a resposta
+caso entre nos critérios seja: return; (return vazio).
+
+-você já conheçe esse esquema com o for: 
+for(let i = 0; i < erros.length; i++){
+        erro = erros[i]
+existe uma tag que é responsável por fazer isso de forma muito mais dinâmica, é o forEach(); como o nome já diz: Para Cada()
+ex:
+   erros.forEach(function(erro){
+     let li = document.createElement("li");
+     li.textContent = erro;
+     ul.appendChild(li);
+    })
+}  Para cada item na variável erros vai ter uma função chamada erro (podia ser qualquer coisa) que irá criar uma variável
+chamada li, responsável por criar uma li na lista html do class6, além disso a função também irá colocar o texto dessa li de
+acordo com a string que tiver seleciona nela mesma, que é tem origem do erros.forEach, depois irá vincular a ul com a li.
+
+tem que criar um function dentro do forEach, e depois chamar a própria função criada.
+
+-.innerHtml é um comando que permite eu alterar o html interno de uma tag do meu html (fica a setinha pra baixo)
+-Se eu quiser apagar um conteúdo html eu posso colocar o .innerHtml e colocar em branco ("").ex:
+ul.innerHTML = ""   Eu apaguei minhas li
+
+----------------------------------------------------------------------------------------------------------------------------
+
+							AULA 7
+
+-var serve para declarar a variável apenas naquela página, já o let é declarado, armazenado e vinculado com todas as outras
+páginas que tenham um link em comum, ex se eu declarar com let paciente em uma página js e em outra página js eu declarar
+uma variável chamada paciente ele dirá que essa variável já está declarada, mesmo não sendo naquela página.
+
+-paciente.addEventListener(`dblclick`)  Esse dblclick é o evento de duplo click
+
+-variável.remove(); remove o que tem na variável, ex:
+let var1 = document.querySelector("h1");
+var1.remove();    Irá remover o h1 do meu site
+
+-this é uma atrelação ao dono do evento, ex:
+pacientes.forEach(function(paciente){
+    paciente.addEventListener(`dblclick`, function(){
+        this.remove();
+    })
+});		Quer dizer que o .paciente vai ser removido
+
+-O event.target tem a propriedade de saber quem foi clicado dos filhos
+event.target (o alvo do evento, que foi clicado)
+ex:
+var tabela = document.querySelector("#tabela-pacientes");
+
+tabela.addEventListener("dblclick",function(event){
+    console.log(event.target);
+});
+quem esculta é a tabela, mas quem sofre a ação é o filho que for clicado
+
+-Se fosse this, seria o dono do evento(escutador) que é a table
+
+-Para uma tag que vc escoheu escultar um evento, todos os "pais" que ele deriva tem que escultar também, para chegar até ele.
+ex:
+pacientes.forEach(function(paciente){
+    paciente.addEventListener(`dblclick`, function(){
+        this.remove();
+
+A classe paciente escultou, mas para chegar até ela o tbody com id tabela-paciente teve que escultar, que por sua vez o table
+escultou, antes dele o section, main e body. quanto mais interno sua tag mais essa família é maior para chegar até ela.
+Geralmente termina no body
+
+Se vc escolher a table, inevitávelmente os ".paciente" também entrarão na ação, já que são como filhos da table
+
+-.parentNode é um comando que faz com que selecione o pai do alvo, ex:
+var tabela = document.querySelector("table");
+
+tabela.addEventListener("dblclick",function(event){
+    var alvo = event.target;
+    var paiDoAlvo = alvo.parentNode;
+    paiDoAlvo.remove();
+});
+
+-setTimeout(); Serve como um temporizador para o Js execultar a proxima linha de códgico apenas depois de um tempo
+Você tem que colocar uma funcção dentro dela, que é a próxima linha que ela vai execultar e depois vírgula, ai quantos
+segundos terá que esperar para execultar essa função(que vai ser a próxima linha(processo)) o tempo é medido em milissegundos
+então se quer por meio segundo  (0.5) tem que colocar 500
+----------------------------------------------------------------------------------------------------------------------------
+
+							ARRAY
+
+frutas.pop(); remove o ultimo item da lista
+frutas.push('Laranja'); adiciona um item na lista no final
+// ['Morango', 'Banana', 'Manga']
+frutas.indexOf('Banana'); procura o item na lista, nesse caso ele responde a posição do item, ue é 1
+frutas.splice(pos, 1); Revome um item baseado na posição, o 1° é a posição e o 2° é quantos irá remover apartir daquela 
+posição.
+----------------------------------------------------------------------------------------------------------------------------
+							AULA 8
+
+- .addEventListener("input",function(){
+     console.log("exemplo");
+ });	o input escuta o evento de digitação (a cada letra digitada ele escuta)
+
+-!= esse sinal que dizer diferente. tem o igual que é == e tem o diferente, que é !=
+
+-Expressão regular: new RegExp() então você coloca dentro do parenteses, oque eu quero que ela busque e como eu quero que
+ela busque. Ex: var expressão = new RegExp(this.value, "i"); esse i entre aspas quer dizer que eu coloquei no modo de
+case insensitive.
+
+-.test()  O método test () testa uma correspondência em uma string.
+Este método retorna verdadeiro se encontrar uma correspondência, caso contrário, retorna falso.
+
+-new RegExp e o .test() se combinam para fazer essa função de busca de letra por letra, ex:
+   var tdNome = paciente.querySelector(".info-nome");
+         var nome = tdNome.textContent;
+         var expressão = new RegExp(this.value, "i");
+         if(expressão.test(nome)){
+            paciente.classList.add("invisivel");
+         }
+         else{
+             paciente.classList.remove("invisivel");
+            }
+
+-----------------------------------------------------------------------------------------------------------------------------
+							AULA 9
+
+-new XMLHTTPRequest(); consegue criar um objeto responsável por fazer uma requisição HTTP com o Javascript
+
+configura a nossa requisição para ser do tipo x ou y  e para o endereço www.xyz.com.br/compras (exemplo). ficando:
+xhr.open("GET", "http://api-pacientes.herokuapp.com/pacientes");
+
+.send(); serve para ele entrar na página que vc quer acessar
+
+X.addEventListener("load", function(){
+        console.log(X.responseText);	ao carregar a página(load) ele ira escutar que devera colocar no console o conteudo
+da página que você colocou
+
+-esse transporte de dados pela web é sempre em forma de string, mesmo que pareça ser um array. vc tem que mudar o tipo:
+
+JSON.parse(texto);  você passa um texto para o JSON e ele transforma em um objeto, se o texto parecer um array ele pode
+identificar e transforma-lo justamente em um array pra vc
+
+-.status são os codigos da página, ex o 200 é o codigo de que a página foi encontrada, o 404 de que não foi e por ai em diante
+
+

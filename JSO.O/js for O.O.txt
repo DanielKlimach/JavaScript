@@ -1,0 +1,173 @@
+							AULA 1
+
+-Imagine que para cada cliente de um banco eu teria que fazer isso:
+const cliente1Nome = "Ricardo";
+const cliente1CPF = "11122233309";
+const cliente1Agencia = "1001";
+const cliente1Saldo = "0";
+
+const cliente2nome = "Alice";
+const cliente2CPF = "88822233309";
+const cliente2Agencia = "1001";
+const cliente2Saldo = "0";
+
+É muita repetição de código, então para resolver isso teremo que criar um molde para utilizarmos toda vez que precisarmos
+criar uma estrutura baseada no mesmo molde.
+
+-Damos o nome desses moldes de classe.
+
+-Dentro da classe teriamos as variáveis (nome, CPF, agencia e saldo) mas no O.O nós chamamos as variáveis de uma classe
+de atributos ou propriedades.
+
+-Fica assim: (você dá o nome que quiser, é uma boa prática começar com maiúscula, eu escolhi o nome Cliente)
+
+class Cliente{
+    nome;
+    cpf;
+    agencia;
+    saldo = 0;
+}
+
+-Para usarmos a classe(o molde) temos que:
+eu crio uma variável e coloco a classe como conteúdo dessa variável (espaço na memória), ficando assim:
+const cliente1 = new Cliente();
+
+-Para eu modificar o conteúdo dos meus atributos eu faço como o JS normal quando quero adentrar em um código, utilizo o .
+
+cliente1.nome = "Ricardo";
+cliente1.cpf = "11122233309";
+cliente1.agencia = "1001";
+cliente1.saldo = "0";
+
+-O cliente Ricardo, seu conjunto de atributos ele é considerado um objeto, no código do visual studio eu tenho 2 objetos
+o Ricardo e a Alice. quando eu coloco const qualquerNome = new Cliente(); é pq criei um novo objeto.
+
+-Você cria um objeto a partir da classe
+-Se eu quiser alterar todos meus objetos é só eu mudar a classe em que todos os objetos tenha como base, ex se eu adicionar 
+class Cliente{
+    nome;
+    cpf;
+    agencia;
+    saldo;
+    rg;
+}
+
+Agora todos os meus objetos vão ter o atributo rg, eles estarão indefinidos pq eu não coloquei conteúdo nele, mas estará lá
+----------------------------------------------------------------------------------------------------------------------------
+							AULA 2
+
+-Eu posso reatribuir os valores dos atributos sem problema, ex:
+contaCorrenteRicardo.saldo = "0";
+console.log(contaCorrenteRicardo.saldo);
+contaCorrenteRicardo.saldo = 100;
+console.log(contaCorrenteRicardo.saldo);
+
+-Se eu quiser subtrair um valor de uma variável por outra é só colocar "-=", exemplo:
+let valorSacado = 200;
+contaCorrenteRicardo.saldo -= valorSacado;
+
+-para eu somar é +=
+
+-Eu posso colocar uma função/método na minha classe, são ações pré-modadas para execultar em meus objetos, ex:
+class contaCorrente{
+    sacar(valor){
+        if(this.saldo >= valor){
+            this.saldo -= valor;
+            }
+            else{
+                console.log("Saque recusado, valor excedido!")
+            }
+    }
+};
+
+-Se vc quer bloquear um atributo para não conseguirem altera-lo diretamente,, você tem que colocar o # antes do 
+atributo, assim quando tentarem não dará, ex:
+class ContaCorrente{
+    agencia;
+    #saldo = 0;
+    sacar(valor){
+        if(this.#saldo >= valor){
+            this.#saldo -= valor;
+            }
+            else{
+                console.log("Saque recusado, valor excedido!")
+            }
+    };
+Assim se eu tentar colocar:
+contaCorrenteRicardo.saldo = 1000    não dará
+contaCorrenteRicardo.#saldo = 1000    não dará
+
+-Atributos bloqueados só podem ser consultados diretamente, pois eles não mostram na busca apenas por seu objeto
+ex: console.log(contaCorrenteRicardo);   Não aparecerá o saldo
+você tem que pedir para o console printar na própria função da classe
+
+-Se eu inventar um atributo o JS irá criá-lo altomaticamente, ex:
+contaCorrenteRicardo.qualquerCoisa = 1000
+Eu poderei dar um console no contaCorrenteRicardo e {aparecerá qualquerCoisa: "1000"}
+
+-Se tiver algum atributo com underline_ na frente significa a mesma coisa que o #, ele é privado, não mexa nele diretamente.
+ele foi declarado assim pela comunidade, ele não chega a funcionar igual o #
+
+-o lado bom do _ é que nele se vc chamar a classe o atributo privado com _ também aparecerá.
+
+-Se não tiver o return no JS ele devolverá undefined
+
+-uma boa prática é vc deixar o return no começo do código com um if do que você não quer que aconteca, assim caso entre no if
+a função será interrompida antes de fazer a susposta ação, ex:
+
+    depositar(valor){
+        if(valor <= 0) return;
+        this._saldo += valor;
+    }
+
+----------------------------------------------------------------------------------------------------------------------------
+							AULA 3
+
+-É importante fazer a separação de 1 ou poucas classes por arquivo.
+
+-Toda vez que um arquivo estiver nomeado iniciando com letra maiúscula é porque ele é uma classe.
+
+-modulo são as exportações e importações dos códigos
+
+-a classe você exporta e o index que consumirá a classe você importa, ficando assim:
+
+export class Cliente{
+    nome;
+    cpf;
+}
+
+ná pagina index:
+
+import {Cliente} from "./Cliente.js"
+
+-importei a classe cliente, coloquei o from e coloquei o endereço em que encontraria o arquivo que contrnha a classe.
+
+-Para os modulos darem certo você precisa mecher nas configurações do node por um console (cmd ou do próprio visualStudio)
+Você terá que escrever:
+
+npm init
+escolho o nome, escolhi bytebank
+nomeio a versão
+coloco ou não uma descrição (se não quiser, só apertar enter)
+escolho o ponto de entrada (por padrão é index.js) por isso nomeie a página principal como index,js
+depois vai vir outras opções que se quiser pode pular
+vai ter o autor
+vai aparecer a licença, vc apenas tecle Enter
+
+-Então vai criar seu arquivo package.json, nele vc tem que colocar , no ultimo comando entre as chaves, criar nova linha dentro
+das chaves e colocar: "type": "module"
+
+-bibliotecas e código feitos pela comunidade NPM – Node package manager.
+
+-Eu consigo pegar classes inteirar a adiciona-las como atributos de outras classes
+
+-Na hora de organizar as classes é uma boa prática separar os atributos públicos dos privados
+
+-Fiz um sistema de transferencia bem simples, dê uma olhada dps.
+
+----------------------------------------------------------------------------------------------------------------------------
+							AULA 3
+-Undefined é quando vc não definiu um valor no espaço de memória guardado, Null é quando vc preencheu com o vazio de propósito
+
+-
+

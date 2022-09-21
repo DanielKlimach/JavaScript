@@ -1,0 +1,7 @@
+Comando   MAC/LINUX
+(Windows)	      Descrição
+cd	   cd	  Muda a pasta
+cd	   pwd	  Mostra o diretório atual
+dir	   ls	  Lista as pastas e/ou arquivos
+cls	   clear  Limpa o Console
+node       node   Execulta um programa na pasta
